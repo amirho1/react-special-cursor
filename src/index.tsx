@@ -1,3 +1,3 @@
 import Pulse from "./shapes/Puls";
 
-export default Pulse;
+export default { Pulse };
