@@ -4,6 +4,8 @@
 
 A [React](https://reactjs.org) Custom able cursor that can decorate your site also I didn't use styling through javascript a lot only color is
 
+## [Demo live](https://amirho1.github.io/react-special-cursor/)
+
 ## Installing
 
 ```
