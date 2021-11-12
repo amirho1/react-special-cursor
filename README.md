@@ -225,8 +225,14 @@ a {
   background-color: purple;
   width: 20px;
   height: 20px;
+<<<<<<< HEAD
 }
 ```
+
+=======
+}```
+
+> > > > > > > 9676b7cf5febea830280fbf807a18ea3771b7716
 
 ## Properties
 
