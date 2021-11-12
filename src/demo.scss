@@ -28,12 +28,18 @@ a {
   padding: 1em;
 }
 
-.react-hover .cursor-border {
-  background-color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 0;
-  z-index: -1;
+.react-hover {
+  .cursor-border {
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 0;
+    z-index: -1;
+  }
+
+  .cursor-dot {
+    z-index: -3;
+  }
 }
 
 .author {
