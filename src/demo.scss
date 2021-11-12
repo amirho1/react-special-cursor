@@ -24,22 +24,24 @@ a {
   background-color: lightblue;
 }
 
+.hover .cursor-border {
+  z-index: -1;
+}
+
 .link {
   padding: 1em;
 }
 
-.react-hover {
-  .cursor-border {
-    background-color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 0;
-    z-index: -1;
-  }
+.react-hover .cursor-border {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 0;
+  z-index: -1;
+}
 
-  .cursor-dot {
-    z-index: -3;
-  }
+.react-hover .cursor-dot {
+  z-index: -3;
 }
 
 .author {
@@ -52,6 +54,10 @@ a {
   width: 100px;
   height: 100px;
   background-color: gray;
+  z-index: -1;
+}
+
+.author-on-hover .cursor-border {
   z-index: -1;
 }
 

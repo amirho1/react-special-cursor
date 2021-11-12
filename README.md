@@ -176,6 +176,10 @@ a {
   background-color: lightblue;
 }
 
+.hover .cursor-border {
+  z-index: -1;
+}
+
 .link {
   padding: 1em;
 }
@@ -186,6 +190,10 @@ a {
   height: 50px;
   border-radius: 0;
   z-index: -1;
+}
+
+.react-hover .cursor-dot {
+  z-index: -3;
 }
 
 .author {
@@ -199,6 +207,24 @@ a {
   height: 100px;
   background-color: gray;
   z-index: -1;
+}
+
+.author-on-hover .cursor-border {
+  z-index: -1;
+}
+
+.head {
+  color: bisque;
+}
+
+.head-hover .cursor-border {
+  border: 5px dotted darkorange;
+}
+
+.head-hover .cursor-dot {
+  background-color: purple;
+  width: 20px;
+  height: 20px;
 }
 ```
 
