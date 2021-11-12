@@ -6,7 +6,6 @@ import "./demo.scss";
 export default function App() {
   return (
     <Cursor
-      color="orange"
       hoverClasses={[
         { classNameOfTargetElement: "head", classNameOfStyle: "head-hover" },
         { classNameOfTargetElement: "link", classNameOfStyle: "hover" },

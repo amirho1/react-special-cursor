@@ -18,13 +18,14 @@ interface Props {
  *
  * @param  props
  * @param  color color of border and dot
- * @param  props.wrapperClassName class Name of wrapper
  * @param  props.children elements that you want to get the cursor shape usually at top level
  * @param  props.hoverClasses an array of objects that accept 2 property on the name of class that you want while hovering having an action an another the style class name that you want to set on dotElement
+ * @param  props.borderClassName this class name will pass to cursor-border
+ * @param  props.dotClassName this class name will pass to cursor-dot
  *
  * @returns  JSX.Element
  *
- * @example <Cursor color={"orange"}>{restOfYourSite}</Cursor>
+ * @example <Cursor>{restOfYourSite}</Cursor>
  */
 
 export default function Cursor({

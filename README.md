@@ -6,8 +6,32 @@ A [React](https://reactjs.org) Custom able cursor that can decorate your site al
 
 ## Installing
 
-```shell script
+```
   npm i react-special-cursor
+```
+
+## Running Demo
+
+```
+npm i
+```
+
+```
+npm run serve
+```
+
+## Build
+
+```
+npm run build
+```
+
+## Test
+
+it's on watch mode you can change it through [package.json](./package.json)
+
+```
+npm run test
 ```
 
 ## Usage
