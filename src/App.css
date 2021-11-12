@@ -1,38 +1,76 @@
-.App {
+body {
+  background-color: #333;
+  color: white;
+  margin: 0;
+  padding: 0;
+  height: 1000px;
+}
+
+a {
+  color: rgb(0, 166, 216);
+  text-decoration: none;
+}
+
+.wrapper {
+  margin: auto;
+  width: 60%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.hover .cursor-dot {
+  width: 100px;
+  height: 100px;
+  z-index: -1;
+  background-color: lightblue;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.hover .cursor-border {
+  z-index: -1;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.link {
+  padding: 1em;
 }
 
-.App-link {
-  color: #61dafb;
+.react-hover .cursor-border {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 0;
+  z-index: -1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.react-hover .cursor-dot {
+  z-index: -3;
+}
+
+.author {
+  color: orange;
+  font-weight: 800;
+  font-size: 1.3em;
+}
+
+.author-on-hover .cursor-dot {
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  z-index: -1;
+}
+
+.author-on-hover .cursor-border {
+  z-index: -1;
+}
+
+.head {
+  color: bisque;
+}
+
+.head-hover .cursor-border {
+  border: 5px dotted darkorange;
+}
+
+.head-hover .cursor-dot {
+  background-color: purple;
+  width: 20px;
+  height: 20px;
 }

@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Cursor from "react-special-cursor";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <Cursor
+      hoverClasses={[
+        { classNameOfTargetElement: "head", classNameOfStyle: "head-hover" },
+        { classNameOfTargetElement: "link", classNameOfStyle: "hover" },
+        { classNameOfTargetElement: "react", classNameOfStyle: "react-hover" },
+        {
+          classNameOfTargetElement: "author",
+          classNameOfStyle: "author-on-hover",
+        },
+      ]}>
+      <div className="wrapper">
+        <h1>
+          <a
+            className="head"
+            rel="noreferrer"
+            href="https://github.com/amirho1/react-cursors.git"
+            target="_blank">
+            React-special-cursors
+          </a>
+        </h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          A custom animated cursor for{" "}
+          <a
+            rel="noreferrer"
+            className="react"
+            target="_blank"
+            href="https://reactjs.org/">
+            React
+          </a>{" "}
+          also supports{" "}
+          <a
+            className="link"
+            rel="noreferrer"
+            target="_blank"
+            href="https://www.typescriptlang.org/download">
+            {" "}
+            Typescript
+          </a>
         </p>
+        <p>You can hover over the links and click to see animations</p>
+        Author:{" "}
         <a
-          className="App-link"
-          href="https://reactjs.org"
+          rel="noreferrer"
+          href="https://github.com/amirho1"
           target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+          className="author">
+          {" "}
+          AmirHossein Salighedar
         </a>
-      </header>
-    </div>
+      </div>
+    </Cursor>
   );
 }
-
-export default App;
