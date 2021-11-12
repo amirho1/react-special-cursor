@@ -13,8 +13,10 @@
     "resolveJsonModule": true,
     "outDir": "dist",
     "jsx": "react-jsx",
-    "target": "ES6"
+    "target": "ES6",
+    "declaration": true,
+    "sourceMap": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dev_server.js"]
+  "include": ["src/**/*.tsx", "src/**/*.ts"],
+  "exclude": ["node_modules", "dev_server.js", "src/demo.tsx"]
 }

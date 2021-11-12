@@ -1,10 +1,10 @@
 {
-  "name": "custom-react-cursor",
+  "name": "react-special-cursor",
   "version": "1.0.0",
   "description": "Animated custom cursor ",
   "main": "index.ts",
   "scripts": {
-    "build": "webpack --config webpack.config.js --watch",
+    "build": "tsc",
     "test": "jest --env=jsdom --watch ",
     "serve": "webpack serve"
   },
