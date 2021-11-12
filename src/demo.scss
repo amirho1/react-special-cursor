@@ -1,0 +1,64 @@
+body {
+  background-color: #333;
+  color: white;
+  margin: 0;
+  padding: 0;
+  height: 1000px;
+}
+
+a {
+  color: rgb(0, 166, 216);
+  text-decoration: none;
+}
+
+.wrapper {
+  margin: auto;
+  width: 60%;
+  text-align: center;
+}
+
+.hover .cursor-dot {
+  width: 100px;
+  height: 100px;
+  z-index: -1;
+  background-color: lightblue;
+}
+
+.link {
+  padding: 1em;
+}
+
+.react-hover .cursor-border {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 0;
+  z-index: -1;
+}
+
+.author {
+  color: orange;
+  font-weight: 800;
+  font-size: 1.3em;
+}
+
+.author-on-hover .cursor-dot {
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  z-index: -1;
+}
+
+.head {
+  color: bisque;
+}
+
+.head-hover .cursor-border {
+  border: 5px dotted darkorange;
+}
+
+.head-hover .cursor-dot {
+  background-color: purple;
+  width: 20px;
+  height: 20px;
+}

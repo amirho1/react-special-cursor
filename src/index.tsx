@@ -1,3 +1,3 @@
-import Pulse from "./shapes/Puls";
+import Dot from "./Cursor/Cursor";
 
-export default { Pulse };
+export default Dot;
