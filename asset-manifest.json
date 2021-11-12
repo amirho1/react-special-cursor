@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/react-special-cursor/static/css/main.0edf721e.chunk.css",
+    "main.js": "/react-special-cursor/static/js/main.87fcda45.chunk.js",
+    "main.js.map": "/react-special-cursor/static/js/main.87fcda45.chunk.js.map",
+    "runtime-main.js": "/react-special-cursor/static/js/runtime-main.36c542f5.js",
+    "runtime-main.js.map": "/react-special-cursor/static/js/runtime-main.36c542f5.js.map",
+    "static/css/2.e16284d4.chunk.css": "/react-special-cursor/static/css/2.e16284d4.chunk.css",
+    "static/js/2.7c6f9f00.chunk.js": "/react-special-cursor/static/js/2.7c6f9f00.chunk.js",
+    "static/js/2.7c6f9f00.chunk.js.map": "/react-special-cursor/static/js/2.7c6f9f00.chunk.js.map",
+    "static/js/3.df85771c.chunk.js": "/react-special-cursor/static/js/3.df85771c.chunk.js",
+    "static/js/3.df85771c.chunk.js.map": "/react-special-cursor/static/js/3.df85771c.chunk.js.map",
+    "index.html": "/react-special-cursor/index.html",
+    "static/css/2.e16284d4.chunk.css.map": "/react-special-cursor/static/css/2.e16284d4.chunk.css.map",
+    "static/css/main.0edf721e.chunk.css.map": "/react-special-cursor/static/css/main.0edf721e.chunk.css.map",
+    "static/js/2.7c6f9f00.chunk.js.LICENSE.txt": "/react-special-cursor/static/js/2.7c6f9f00.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.36c542f5.js",
+    "static/css/2.e16284d4.chunk.css",
+    "static/js/2.7c6f9f00.chunk.js",
+    "static/css/main.0edf721e.chunk.css",
+    "static/js/main.87fcda45.chunk.js"
+  ]
+}
