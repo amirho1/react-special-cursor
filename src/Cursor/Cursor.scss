@@ -8,7 +8,7 @@ body {
   pointer-events: none;
   border: 1px solid white;
   transform: translate(-50%, -50%);
-  z-index: -1;
+  z-index: 9999;
   width: 35px;
   height: 35px;
   transition: width 0.2s linear, height 0.2s linear;
@@ -16,6 +16,7 @@ body {
 }
 
 .cursor-dot {
+  z-index: 9999;
   border-radius: 50%;
   position: fixed;
   transform: translate(-50%, -50%);

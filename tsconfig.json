@@ -17,6 +17,6 @@
     "declaration": true,
     "sourceMap": true
   },
-  "include": ["src/**/*.tsx", "src/**/*.ts"],
+  "include": ["src/**/*.tsx", "src/**/*.ts", "index.tsx"],
   "exclude": ["node_modules", "dev_server.js", "src/demo.tsx"]
 }
