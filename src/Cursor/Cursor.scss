@@ -1,0 +1,38 @@
+body {
+  cursor: none;
+}
+
+.cursor-border {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  border: 1px solid white;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  width: 35px;
+  height: 35px;
+  transition: width 0.2s linear, height 0.2s linear;
+  cursor: none;
+}
+
+.cursor-dot {
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  pointer-events: none;
+  width: 5px;
+  z-index: 1000;
+  height: 5px;
+  cursor: none;
+  transition: width 0.2s linear, height 0.2s linear;
+}
+
+.smaller-cursor-border {
+  width: 25px;
+  height: 25px;
+}
+
+* {
+  cursor: none;
+}

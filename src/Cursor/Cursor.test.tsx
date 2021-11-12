@@ -1,8 +1,8 @@
 import { screen, cleanup, render } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import Puls from "./Puls";
+import Dot from "./Cursor";
 
-describe("Puls", () => {
+describe("Dot", () => {
   let element: HTMLElement;
   let childrenTextContext = "Hello world";
   let children = <p className="children">{childrenTextContext}</p>;
@@ -14,10 +14,10 @@ describe("Puls", () => {
     cleanup();
 
     //render the Component
-    render(<Puls children={children} cursorClassName={cursorTestClassName} />);
+    render(<Dot children={children} borderClassName={cursorTestClassName} />);
 
     // get the element
-    element = screen.getByTestId("Puls");
+    element = screen.getByTestId("Dot");
   });
 
   it("should mount on document", () => {
@@ -31,8 +31,8 @@ describe("Puls", () => {
     );
   });
 
-  it("should get puls-cursor-border element", () => {
-    const pulsCursor = element.querySelector(".puls-cursor");
+  it("should get dot-in-circle-cursor element", () => {
+    const pulsCursor = element.querySelector(".cursor-border");
     expect(pulsCursor).toBeInTheDocument();
   });
 
