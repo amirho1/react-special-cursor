@@ -3,6 +3,15 @@ import ReactDOM from "react-dom";
 import Cursor from "./Cursor/Cursor";
 import "./demo.scss";
 
+const welcome = (
+  <h3 className="h3">
+    Welcome to Demo of React-special-cursor from version 1.1.0 u will have the
+    ability to show texts, elements ... on hover inside the cursor-dot by only
+    adding a cursorChildren to hoverClass object
+    <span style={{ color: "red" }}> Click to see documentation</span>
+  </h3>
+);
+
 export default function App() {
   return (
     <Cursor
@@ -13,6 +22,11 @@ export default function App() {
         {
           classNameOfTargetElement: "author",
           classNameOfStyle: "author-on-hover",
+        },
+        {
+          classNameOfTargetElement: "children",
+          classNameOfStyle: "children-hover",
+          cursorChildren: welcome,
         },
       ]}>
       <div className="wrapper">
@@ -43,6 +57,16 @@ export default function App() {
         <a href="https://github.com/amirho1" target="_blank" className="author">
           {" "}
           AmirHossein Salighedar
+        </a>
+        <a
+          href="https://github.com/amirho1/react-special-cursor"
+          style={{ marginTop: "3em", fontSize: "2rem", display: "block" }}>
+          <span className="children">HoverMe</span>
+        </a>
+        <a
+          href="https://github.com/amirho1/react-special-cursor"
+          style={{ marginTop: "3em", fontSize: "2rem", display: "block" }}>
+          <span className="children">HoverMe</span>
         </a>
       </div>
     </Cursor>
