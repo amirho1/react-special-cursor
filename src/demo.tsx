@@ -9,6 +9,11 @@ const welcome = (
     ability to show texts, elements ... on hover inside the cursor-dot by only
     adding a cursorChildren to hoverClass object
     <span style={{ color: "red" }}> Click to see documentation</span>
+    <img
+      className="react-icon"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"
+      alt="react img "
+    />
   </h3>
 );
 

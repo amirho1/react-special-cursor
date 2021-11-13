@@ -96,22 +96,41 @@ import ReactDOM from "react-dom";
 import Cursor from "./Cursor/Cursor";
 import "./demo.scss";
 
+const welcome = (
+  <h3 className="h3">
+    Welcome to Demo of React-special-cursor from version 1.1.0 u will have the
+    ability to show texts, elements ... on hover inside the cursor-dot by only
+    adding a cursorChildren to hoverClass object
+    <span style={{ color: "red" }}> Click to see documentation</span>
+    <img
+      className="react-icon"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"
+      alt="react img "
+    />
+  </h3>
+);
+
 export default function App() {
   return (
     <Cursor
-      color="orange"
       hoverClasses={[
+        { classNameOfTargetElement: "head", classNameOfStyle: "head-hover" },
         { classNameOfTargetElement: "link", classNameOfStyle: "hover" },
         { classNameOfTargetElement: "react", classNameOfStyle: "react-hover" },
         {
           classNameOfTargetElement: "author",
           classNameOfStyle: "author-on-hover",
         },
+        {
+          classNameOfTargetElement: "children",
+          classNameOfStyle: "children-hover",
+          cursorChildren: welcome,
+        },
       ]}>
       <div className="wrapper">
         <h1>
           <a
-            className="react"
+            className="head"
             href="https://github.com/amirho1/react-cursors.git"
             target="_blank">
             React-cursors
@@ -132,16 +151,30 @@ export default function App() {
           </a>
         </p>
         <p>You can hover over the links and click to see animations</p>
-        Author: <a
-          href="https://github.com/amirho1"
-          target="_blank"
-          className="author">
+        Author:{" "}
+        <a href="https://github.com/amirho1" target="_blank" className="author">
           {" "}
           AmirHossein Salighedar
+        </a>
+        <a
+          href="https://github.com/amirho1/react-special-cursor"
+          style={{ marginTop: "3em", fontSize: "2rem", display: "block" }}>
+          <span className="children">HoverMe</span>
+        </a>
+        <a
+          href="https://github.com/amirho1/react-special-cursor"
+          style={{ marginTop: "3em", fontSize: "2rem", display: "block" }}>
+          <span className="children">HoverMe</span>
         </a>
       </div>
     </Cursor>
   );
+}
+
+const root = document.getElementById("root");
+
+ReactDOM.render(<App />, root);
+
 }
 ```
 
@@ -167,6 +200,7 @@ a {
   margin: auto;
   width: 60%;
   text-align: center;
+  line-height: 2em;
 }
 
 .hover .cursor-dot {
@@ -226,16 +260,46 @@ a {
   width: 20px;
   height: 20px;
 }
+
+.children {
+  color: rgb(114, 253, 0);
+}
+
+.children-hover .cursor-dot {
+  width: 600px;
+  height: 600px;
+  background-color: white;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.children-hover .cursor-border {
+  z-index: -1;
+}
+
+.h3 {
+  color: #333;
+  padding: 2em;
+}
+
+.react-icon {
+  width: 200px;
+  position: absolute;
+  top: 2em;
+  right: 10.5em;
+}
 ```
 
 ## Properties
 
-| Name            | Type        | Description                                                                                                                                                                                                                                                                                                                                                  |
-| --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| children        | JSX.Element | the rest of your application i should be App component                                                                                                                                                                                                                                                                                                       |
-| borderClassName | string      | className of cursor border                                                                                                                                                                                                                                                                                                                                   |
-| dotClassName    | string      | className of cursor inner dot                                                                                                                                                                                                                                                                                                                                |
-| hoverClasses    | object      | an array of objects that each object accepts 2 string one with name of classNameOfTargetElement that accepts the className of the elements that you want to have some styles on hover second is classNameOfStyle the className that will passed to the cursor-wrapper element from that you have access to modify cursor-dot and cursor-border on each hover |
+| Name            | Type        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| children        | JSX.Element | the rest of your application i should be App component                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| borderClassName | string      | className of cursor border                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| dotClassName    | string      | className of cursor inner dot                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| hoverClasses    | object      | an array of objects that each object accepts 2 string one with name of classNameOfTargetElement that accepts the className of the elements that you want to have some styles on hover second is classNameOfStyle the className that will passed to the cursor-wrapper element from that you have access to modify cursor-dot and cursor-border on each hover also in version 1.1.0 it has a third property that you can display HTMLElement or text inside the cursor-dot you can check the Demo |
 
 ## hoverClasses Object Type
 
@@ -244,6 +308,7 @@ a {
   {
     classNameOfTargetElement: string;
     classNameOfStyle: string;
+    cursorChildren: JSX.Element | string | undefined | number
   }
 ]
 ```
