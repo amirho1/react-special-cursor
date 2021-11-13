@@ -1,3 +1,3 @@
-import Dot from "./src/Cursor/Cursor";
+import Cursor from "./src/Cursor/Cursor";
 
-export default Dot;
+export default Cursor;
