@@ -156,11 +156,7 @@ export default function App() {
           {" "}
           AmirHossein Salighedar
         </a>
-        <a
-          href="https://github.com/amirho1/react-special-cursor"
-          style={{ marginTop: "3em", fontSize: "2rem", display: "block" }}>
-          <span className="children">HoverMe</span>
-        </a>
+
         <a
           href="https://github.com/amirho1/react-special-cursor"
           style={{ marginTop: "3em", fontSize: "2rem", display: "block" }}>
