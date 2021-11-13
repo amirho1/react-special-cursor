@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import "./Cursor.scss";
 import useFollowCursor from "../hooks/useFollowCursor";
-import { hoverStyle, IStyles } from "./types";
+import { CursorChildrenType, hoverStyle, IStyles } from "./types";
+import ReactDOM from "react-dom";
 
 interface Props {
   children: JSX.Element;
@@ -36,26 +37,31 @@ export default function Cursor({
 }: Props) {
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [classes, setClasses] = useState<
-    { elements: NodeListOf<Element>; className: string }[]
+    {
+      elements: NodeListOf<Element>;
+      className: string;
+      cursorChildren: CursorChildrenType;
+    }[]
   >([]);
+  useState<Element | null>();
 
-  const [cursorWrapperElement, setCursorWrapperElement] =
-    useState<Element | null>();
-
-  // get The cursor wrapper
-  useEffect(() => {
-    setCursorWrapperElement(document.querySelector(".cursor-wrapper"));
-  }, []);
+  // get The cursor wrapper also cursorDotElement
+  const cursorWrapperElement = useRef<HTMLDivElement>(null);
+  const cursorDotElement = useRef<HTMLDivElement>(null);
 
   // get a
   useEffect(() => {
     if (hoverClasses.length) {
-      hoverClasses.forEach(className => {
+      hoverClasses.forEach(hoverClass => {
         const elements = document.querySelectorAll(
-          `.${className.classNameOfTargetElement}`
+          `.${hoverClass.classNameOfTargetElement}`
         );
         setClasses(current => {
-          const cl = { elements, className: className.classNameOfStyle };
+          const cl = {
+            elements,
+            className: hoverClass.classNameOfStyle,
+            cursorChildren: hoverClass.cursorChildren,
+          };
 
           return [...current, cl];
         });
@@ -99,7 +105,29 @@ export default function Cursor({
       classes.forEach(className => {
         for (let i = 0; i < className.elements.length; i++) {
           className.elements[i].addEventListener("mouseover", () => {
-            cursorWrapperElement?.classList.add(className.className);
+            cursorWrapperElement.current?.classList.add(className.className);
+
+            if (className?.cursorChildren) {
+              cursorDotElement.current?.classList.add("transition-none");
+              if (
+                (typeof className.cursorChildren === "string" ||
+                  typeof className.cursorChildren === "number") &&
+                cursorDotElement.current
+              ) {
+                cursorDotElement.current.textContent = String(
+                  className.cursorChildren
+                );
+              } else if (
+                typeof className?.cursorChildren !== "string" &&
+                cursorDotElement &&
+                typeof className?.cursorChildren !== "number"
+              ) {
+                ReactDOM.render(
+                  className?.cursorChildren,
+                  cursorDotElement.current
+                );
+              }
+            }
           });
         }
       });
@@ -112,7 +140,13 @@ export default function Cursor({
       classes.forEach(className => {
         for (let i = 0; i < className.elements.length; i++) {
           className.elements[i].addEventListener("mouseout", () => {
-            cursorWrapperElement?.classList.remove(className.className);
+            cursorWrapperElement.current?.classList.remove(className.className);
+
+            if (className.cursorChildren && cursorDotElement.current) {
+              cursorDotElement.current?.classList.remove("transition-none");
+              cursorDotElement.current.textContent = "";
+              ReactDOM.unmountComponentAtNode(cursorDotElement.current);
+            }
           });
         }
       });
@@ -132,11 +166,14 @@ export default function Cursor({
       window.removeEventListener("mouseout", mouseOutHandler);
     };
 
-    // function again only when classes has changed
+    // function again only when hoverClasses has changed
   }, [classes]);
 
   return (
-    <div className="cursor-wrapper" data-testid="Dot">
+    <div
+      ref={cursorWrapperElement}
+      className="cursor-wrapper"
+      data-testid="cursor">
       {/* cursor outer border element */}
       <div
         className={classNames("cursor-border", borderClassName, {
@@ -147,6 +184,7 @@ export default function Cursor({
       {/* cursor inner dot */}
       <div
         style={styles.innerDot}
+        ref={cursorDotElement}
         className={classNames("cursor-dot", dotClassName)}></div>
 
       {/* rest of your app that will get the cursor shape */}

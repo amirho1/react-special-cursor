@@ -5,7 +5,12 @@ import Cursor from "./Cursor";
 describe("Dot", () => {
   let element: HTMLElement;
   let childrenTextContext = "Hello world";
-  let children = <p className="children">{childrenTextContext}</p>;
+  let children = (
+    <p className="children">
+      {childrenTextContext}
+      <button className="btn"></button>
+    </p>
+  );
   let cursorTestClassName = "cursor-test-class-name";
   let dotTestClassName = "dot-test-class-name";
 
@@ -20,11 +25,18 @@ describe("Dot", () => {
         children={children}
         borderClassName={cursorTestClassName}
         dotClassName={dotTestClassName}
+        hoverClasses={[
+          {
+            classNameOfStyle: "btn",
+            classNameOfTargetElement: "btn-hover",
+            cursorChildren: <p className="child">child</p>,
+          },
+        ]}
       />
     );
 
     // get the element
-    element = screen.getByTestId("Dot");
+    element = screen.getByTestId("cursor");
   });
 
   it("should mount on document", () => {
