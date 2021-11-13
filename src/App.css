@@ -15,6 +15,7 @@ a {
   margin: auto;
   width: 60%;
   text-align: center;
+  line-height: 2em;
 }
 
 .hover .cursor-dot {
@@ -73,4 +74,34 @@ a {
   background-color: purple;
   width: 20px;
   height: 20px;
+}
+
+.children {
+  color: rgb(114, 253, 0);
+}
+
+.children-hover .cursor-dot {
+  width: 600px;
+  height: 600px;
+  background-color: white;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.children-hover .cursor-border {
+  z-index: -1;
+}
+
+.h3 {
+  color: #333;
+  padding: 2em;
+}
+
+.react-icon {
+  width: 200px;
+  position: absolute;
+  top: 2em;
+  right: 10.5em;
 }
