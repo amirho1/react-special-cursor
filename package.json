@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amirho1/custom-react-cursor.git"
+    "url": "git+https://github.com/amirho1/react-special-cursor"
   },
   "keywords": [
     "react",
@@ -23,9 +23,9 @@
   "author": "AmirHossein Salighedar",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/amirho1/custom-react-cursor/issues"
+    "url": "https://github.com/amirho1/react-special-cursor/issues"
   },
-  "homepage": "https://github.com/amirho1/custom-react-cursor#readme",
+  "homepage": "https://github.com/amirho1/react-special-cursor#readme",
   "dependencies": {
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
