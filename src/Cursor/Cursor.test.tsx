@@ -1,6 +1,7 @@
-import { screen, cleanup, render } from "@testing-library/react";
+import { screen, cleanup, render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import Cursor from "./Cursor";
+import userEvent from "@testing-library/user-event";
 
 describe("Dot", () => {
   let element: HTMLElement;
@@ -8,7 +9,7 @@ describe("Dot", () => {
   let children = (
     <p className="children">
       {childrenTextContext}
-      <button className="btn"></button>
+      <button className="btn">button</button>
     </p>
   );
   let cursorTestClassName = "cursor-test-class-name";
@@ -27,9 +28,9 @@ describe("Dot", () => {
         dotClassName={dotTestClassName}
         hoverClasses={[
           {
-            classNameOfStyle: "btn",
-            classNameOfTargetElement: "btn-hover",
             cursorChildren: <p className="child">child</p>,
+            classNameOfTargetElement: "btn",
+            classNameOfStyle: "btn-hover",
           },
         ]}
       />
@@ -48,6 +49,8 @@ describe("Dot", () => {
     expect(element.querySelector(".children")?.textContent).toMatch(
       childrenTextContext
     );
+    expect(element.querySelector(".children")?.children.length).toBe(1);
+    expect(element?.querySelector(".btn")).toBeInTheDocument();
   });
 
   it("cursor-border should be in dom", () => {
@@ -70,5 +73,28 @@ describe("Dot", () => {
     const cursorDot = element.querySelector(`.${dotTestClassName}`);
     expect(cursorDot).toBeInTheDocument();
     expect(cursorDot?.className).toMatch("cursor-dot");
+  });
+
+  it("should render given cursorChild while hovering on target element in to cursorDot", () => {
+    const btn = element.querySelector(".btn");
+    const cursorDot = element.querySelector(".cursor-dot");
+    expect(btn).toBeInTheDocument();
+    expect(cursorDot).toBeInTheDocument();
+
+    if (btn) {
+      fireEvent.mouseOver(btn);
+      userEvent.hover(btn);
+    }
+    expect(element.className).toMatch("btn-hover");
+    expect(cursorDot?.children.length).toBe(1);
+    expect(cursorDot?.querySelector(".child")).toBeInTheDocument();
+
+    if (btn) {
+      fireEvent.mouseOut(btn);
+      userEvent.unhover(btn);
+    }
+    expect(element.className).not.toMatch("btn-hover");
+    expect(cursorDot?.children.length).not.toBe(1);
+    expect(cursorDot?.querySelector(".child")).not.toBeInTheDocument();
   });
 });

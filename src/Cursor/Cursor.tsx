@@ -114,8 +114,9 @@ export default function Cursor({
                   typeof className.cursorChildren === "number") &&
                 cursorDotElement.current
               ) {
-                cursorDotElement.current.textContent = String(
-                  className.cursorChildren
+                ReactDOM.render(
+                  <p>{className?.cursorChildren}</p>,
+                  cursorDotElement.current
                 );
               } else if (
                 typeof className?.cursorChildren !== "string" &&
@@ -144,7 +145,6 @@ export default function Cursor({
 
             if (className.cursorChildren && cursorDotElement.current) {
               cursorDotElement.current?.classList.remove("transition-none");
-              cursorDotElement.current.textContent = "";
               ReactDOM.unmountComponentAtNode(cursorDotElement.current);
             }
           });
