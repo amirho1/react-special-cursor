@@ -67,7 +67,8 @@ export default function Cursor({
         });
       });
     }
-  }, []);
+    // redo on changing hoverClasses
+  }, [hoverClasses]);
 
   // get mouse x and y coordinate
   const { mouseX, mouseY } = useFollowCursor();
