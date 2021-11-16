@@ -4,6 +4,7 @@ import "./Cursor.scss";
 import useFollowCursor from "../hooks/useFollowCursor";
 import { CursorChildrenType, hoverStyle, IStyles } from "./types";
 import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
 
 interface Props {
   children: JSX.Element;
@@ -18,7 +19,6 @@ interface Props {
  * @component Customable cursor
  *
  * @param  props
- * @param  color color of border and dot
  * @param  props.children elements that you want to get the cursor shape usually at top level
  * @param  props.hoverClasses an array of objects that accept 2 property on the name of class that you want while hovering having an action an another the style class name that you want to set on dotElement
  * @param  props.borderClassName this class name will pass to cursor-border
@@ -43,7 +43,6 @@ export default function Cursor({
       cursorChildren: CursorChildrenType;
     }[]
   >([]);
-  useState<Element | null>();
 
   // get The cursor wrapper also cursorDotElement
   const cursorWrapperElement = useRef<HTMLDivElement>(null);
@@ -168,7 +167,7 @@ export default function Cursor({
     };
 
     // function again only when hoverClasses has changed
-  }, [classes]);
+  }, [classes, hoverClasses]);
 
   return (
     <div
@@ -193,3 +192,20 @@ export default function Cursor({
     </div>
   );
 }
+
+Cursor.propTypes = {
+  children: PropTypes.element.isRequired,
+  borderClassName: PropTypes.string,
+  dotClassName: PropTypes.string,
+  hoverClasses: PropTypes.arrayOf(
+    PropTypes.shape({
+      classNameOfTargetElement: PropTypes.string.isRequired,
+      classNameOfStyle: PropTypes.string.isRequired,
+      cursorChildren: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+        PropTypes.element,
+      ]),
+    })
+  ),
+};
