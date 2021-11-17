@@ -1,16 +1,25 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import classNames from "classnames";
 import "./Cursor.scss";
 import useFollowCursor from "../hooks/useFollowCursor";
 import { CursorChildrenType, hoverStyle, IStyles } from "./types";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
+import IsDevice from "../helpers/isDevice";
 
 interface Props {
   children: JSX.Element;
   borderClassName?: string;
   dotClassName?: string;
   hoverClasses?: hoverStyle[];
+  turnOffOnPhone?: boolean;
 }
 
 /**
@@ -23,19 +32,33 @@ interface Props {
  * @param  props.hoverClasses an array of objects that accept 2 property on the name of class that you want while hovering having an action an another the style class name that you want to set on dotElement
  * @param  props.borderClassName this class name will pass to cursor-border
  * @param  props.dotClassName this class name will pass to cursor-dot
- *
+ * @param  props.turnOffOnPhone boolean that makes it off on phone by default true
  * @returns  JSX.Element
  *
  * @example <Cursor>{restOfYourSite}</Cursor>
  */
 
-export default function Cursor({
+function Cursor({
   children,
   borderClassName,
   dotClassName,
   hoverClasses = [],
+  turnOffOnPhone = true,
 }: Props) {
-  const [isMouseDown, setIsMouseDown] = useState(false);
+  // remove default cursor
+  useEffect(() => {
+    if (!turnOffOnPhone || !IsDevice?.any()) {
+      console.log("testing");
+      document.body.classList.add("cursor-none");
+    } else {
+      document.body.classList.add("initial-body");
+    }
+  }, [turnOffOnPhone]);
+
+  // if device is phone and turnOffOnPhone is true return only children
+  if (IsDevice?.any() && turnOffOnPhone)
+    return <React.Fragment>{children}</React.Fragment>;
+
   const [classes, setClasses] = useState<
     {
       elements: NodeListOf<Element>;
@@ -47,8 +70,8 @@ export default function Cursor({
   // get The cursor wrapper also cursorDotElement
   const cursorWrapperElement = useRef<HTMLDivElement>(null);
   const cursorDotElement = useRef<HTMLDivElement>(null);
+  const cursorBorderElement = useRef<HTMLDivElement>(null);
 
-  // get a
   useEffect(() => {
     if (hoverClasses.length) {
       hoverClasses.forEach(hoverClass => {
@@ -73,30 +96,31 @@ export default function Cursor({
   const { mouseX, mouseY } = useFollowCursor();
 
   // styles
-  const styles: IStyles = {
-    cursorBorder: {
-      top: mouseY,
-      left: mouseX,
-    },
-    innerDot: {
-      top: mouseY,
-      left: mouseX,
-    },
-  };
-
-  // remove default cursor
-  useEffect(() => {
-    document.body.style.cursor = "none";
-  }, []);
+  const styles: IStyles = useMemo(
+    () => ({
+      cursorBorder: {
+        top: mouseY,
+        left: mouseX,
+      },
+      innerDot: {
+        top: mouseY,
+        left: mouseX,
+      },
+    }),
+    [mouseX, mouseY]
+  );
 
   // mousedown handler
   const mouseDownHandler = useCallback(() => {
-    setIsMouseDown(true);
+    if (cursorBorderElement.current && cursorBorderElement.current.classList)
+      cursorBorderElement.current.classList.add("smaller-cursor-border");
   }, []);
 
   //mouseup handler
+
   const mouseUpHandler = useCallback(() => {
-    setIsMouseDown(false);
+    if (cursorBorderElement.current && cursorBorderElement.current.classList)
+      cursorBorderElement.current.classList.remove("smaller-cursor-border");
   }, []);
 
   // mouseup handler
@@ -133,7 +157,7 @@ export default function Cursor({
         }
       });
     }
-  }, [classes]);
+  }, [classes, hoverClasses]);
 
   // mouse out handler
   const mouseOutHandler = useCallback(() => {
@@ -150,7 +174,7 @@ export default function Cursor({
           });
         }
       });
-  }, [classes]);
+  }, [classes, hoverClasses]);
 
   // add event listeners
   useEffect(() => {
@@ -158,7 +182,6 @@ export default function Cursor({
     window.addEventListener("mouseup", mouseUpHandler);
     window.addEventListener("mouseover", mouseOverHandler);
     window.addEventListener("mouseout", mouseOutHandler);
-
     return () => {
       window.removeEventListener("mousedown", mouseDownHandler);
       window.removeEventListener("mouseup", mouseUpHandler);
@@ -176,10 +199,9 @@ export default function Cursor({
       data-testid="cursor">
       {/* cursor outer border element */}
       <div
-        className={classNames("cursor-border", borderClassName, {
-          "smaller-cursor-border": isMouseDown,
-        })}
-        style={styles.cursorBorder}></div>
+        className={classNames("cursor-border", borderClassName)}
+        style={styles.cursorBorder}
+        ref={cursorBorderElement}></div>
 
       {/* cursor inner dot */}
       <div
@@ -208,4 +230,7 @@ Cursor.propTypes = {
       ]),
     })
   ),
+  turnOffOnPhone: PropTypes.bool,
 };
+
+export default Cursor;

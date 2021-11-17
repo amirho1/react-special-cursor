@@ -1,5 +1,19 @@
-body {
+html {
   cursor: none;
+}
+
+.cursor-none {
+  cursor: none;
+  & * {
+    cursor: none;
+  }
+}
+
+.initial-body {
+  cursor: initial;
+  & * {
+    cursor: initial;
+  }
 }
 
 .cursor-border {
@@ -32,10 +46,6 @@ body {
 .smaller-cursor-border {
   width: 25px;
   height: 25px;
-}
-
-* {
-  cursor: none;
 }
 
 .transition-none {
