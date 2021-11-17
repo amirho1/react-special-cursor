@@ -295,6 +295,7 @@ a {
 | children        | JSX.Element | the rest of your application i should be App component                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | borderClassName | string      | className of cursor border                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | dotClassName    | string      | className of cursor inner dot                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| turnOffOnPhone  | boolean     | turns off special cursor when user device is phone                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | hoverClasses    | object      | an array of objects that each object accepts 2 string one with name of classNameOfTargetElement that accepts the className of the elements that you want to have some styles on hover second is classNameOfStyle the className that will passed to the cursor-wrapper element from that you have access to modify cursor-dot and cursor-border on each hover also in version 1.1.0 it has a third property that you can display HTMLElement or text inside the cursor-dot you can check the Demo |
 
 ## hoverClasses Object Type
@@ -308,6 +309,10 @@ a {
   }
 ]
 ```
+
+## detecting phone devices
+
+it's detecting phone devices so u can turn it off on phone devices (it's off by default) but u cant turn it on by setting turnOffOnPhone to false
 
 ## Author
 

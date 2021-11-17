@@ -81,8 +81,9 @@ a {
 }
 
 .children-hover .cursor-dot {
-  width: 600px;
-  height: 600px;
+  width: min(600px, 100%);
+  height: min(600px, 100%);
+  border-radius: 0;
   background-color: white;
   color: #333;
   display: flex;
@@ -101,7 +102,6 @@ a {
 
 .react-icon {
   width: 200px;
-  position: absolute;
-  top: 2em;
-  right: 10.5em;
+  margin: auto;
+  display: block;
 }

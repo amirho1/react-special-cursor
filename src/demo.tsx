@@ -5,21 +5,22 @@ import "./demo.scss";
 
 const welcome = (
   <h3 className="h3">
-    Welcome to Demo of React-special-cursor from version 1.1.0 u will have the
-    ability to show texts, elements ... on hover inside the cursor-dot by only
-    adding a cursorChildren to hoverClass object
-    <span style={{ color: "red" }}> Click to see documentation</span>
     <img
       className="react-icon"
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png"
       alt="react img "
     />
+    Welcome to Demo of React-special-cursor from version 1.1.0 u will have the
+    ability to show texts, elements ... on hover inside the cursor-dot by only
+    adding a cursorChildren to hoverClass object
+    <span style={{ color: "red" }}> Click to see documentation</span>
   </h3>
 );
 
 export default function App() {
   return (
     <Cursor
+      turnOffOnPhone={false}
       hoverClasses={[
         { classNameOfTargetElement: "head", classNameOfStyle: "head-hover" },
         { classNameOfTargetElement: "link", classNameOfStyle: "hover" },
