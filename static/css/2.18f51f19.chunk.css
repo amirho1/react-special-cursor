@@ -1,2 +1,0 @@
-body{cursor:none}.cursor-border{border-radius:50%;border:1px solid #fff;width:35px;height:35px}.cursor-border,.cursor-dot{position:fixed;pointer-events:none;transform:translate(-50%,-50%);z-index:9999;transition:width .2s linear,height .2s linear;cursor:none}.cursor-dot{border-radius:50%;background-color:#fff;width:5px;z-index:1000;height:5px}.smaller-cursor-border{width:25px;height:25px}*{cursor:none}.transition-none{transition:none}
-/*# sourceMappingURL=2.18f51f19.chunk.css.map */
