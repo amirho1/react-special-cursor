@@ -1,7 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import Cursor from "./Cursor/Cursor";
-import "./demo.scss";
+import Cursor from "../dist/";
+import "./demo.css";
+import { createRoot } from "react-dom/client";
 
 const welcome = (
   <h3 className="h3">
@@ -40,27 +40,27 @@ export default function App() {
           <a
             className="head"
             href="https://github.com/amirho1/react-cursors.git"
-            target="_blank">
+            target="_blank" rel="noreferrer">
             React-cursors
           </a>
         </h1>
         <p>
           A custom animated cursor for{" "}
-          <a className="react" target="_blank" href="https://reactjs.org/">
+          <a className="react" target="_blank" href="https://reactjs.org/" rel="noreferrer">
             React
           </a>{" "}
           also supports{" "}
           <a
             className="link"
             target="_blank"
-            href="https://www.typescriptlang.org/download">
+            href="https://www.typescriptlang.org/download" rel="noreferrer">
             {" "}
             Typescript
           </a>
         </p>
         <p>You can hover over the links and click to see animations</p>
         Author:{" "}
-        <a href="https://github.com/amirho1" target="_blank" className="author">
+        <a href="https://github.com/amirho1" target="_blank" className="author" rel="noreferrer">
           {" "}
           AmirHossein Salighedar
         </a>
@@ -74,6 +74,7 @@ export default function App() {
   );
 }
 
-const root = document.getElementById("root");
+const container = document.getElementById("root");
+const root = container && createRoot(container);
 
-ReactDOM.render(<App />, root);
+root?.render(<App />);

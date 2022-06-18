@@ -1,16 +1,13 @@
 import React, {
-  memo,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
-import classNames from "classnames";
-import "./Cursor.scss";
+import "./Cursor.css";
 import useFollowCursor from "../hooks/useFollowCursor";
 import { CursorChildrenType, hoverStyle, IStyles } from "./types";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import IsDevice from "../helpers/isDevice";
 
@@ -45,19 +42,18 @@ function Cursor({
   hoverClasses = [],
   turnOffOnPhone = true,
 }: Props) {
+  const [dotChild, setDotChild] = useState<
+    string | null | number | JSX.Element
+  >(null);
+
   // remove default cursor
   useEffect(() => {
     if (!turnOffOnPhone || !IsDevice?.any()) {
-      console.log("testing");
       document.body.classList.add("cursor-none");
     } else {
       document.body.classList.add("initial-body");
     }
   }, [turnOffOnPhone]);
-
-  // if device is phone and turnOffOnPhone is true return only children
-  if (IsDevice?.any() && turnOffOnPhone)
-    return <React.Fragment>{children}</React.Fragment>;
 
   const [classes, setClasses] = useState<
     {
@@ -133,31 +129,13 @@ function Cursor({
 
             if (className?.cursorChildren) {
               cursorDotElement.current?.classList.add("transition-none");
-              if (
-                (typeof className.cursorChildren === "string" ||
-                  typeof className.cursorChildren === "number") &&
-                cursorDotElement.current
-              ) {
-                ReactDOM.render(
-                  <p>{className?.cursorChildren}</p>,
-                  cursorDotElement.current
-                );
-              } else if (
-                typeof className?.cursorChildren !== "string" &&
-                cursorDotElement &&
-                typeof className?.cursorChildren !== "number"
-              ) {
-                ReactDOM.render(
-                  className?.cursorChildren,
-                  cursorDotElement.current
-                );
-              }
+              setDotChild(className?.cursorChildren);
             }
           });
         }
       });
     }
-  }, [classes, hoverClasses]);
+  }, [classes]);
 
   // mouse out handler
   const mouseOutHandler = useCallback(() => {
@@ -167,14 +145,14 @@ function Cursor({
           className.elements[i].addEventListener("mouseout", () => {
             cursorWrapperElement.current?.classList.remove(className.className);
 
-            if (className.cursorChildren && cursorDotElement.current) {
+            if (className.cursorChildren) {
               cursorDotElement.current?.classList.remove("transition-none");
-              ReactDOM.unmountComponentAtNode(cursorDotElement.current);
+              setDotChild(null);
             }
           });
         }
       });
-  }, [classes, hoverClasses]);
+  }, [classes]);
 
   // add event listeners
   useEffect(() => {
@@ -190,7 +168,11 @@ function Cursor({
     };
 
     // function again only when hoverClasses has changed
-  }, [classes, hoverClasses]);
+  }, [mouseDownHandler, mouseOutHandler, mouseOverHandler, mouseUpHandler]);
+
+  // if device is phone and turnOffOnPhone is true return only children
+  if (IsDevice?.any() && turnOffOnPhone)
+    return <React.Fragment>{children}</React.Fragment>;
 
   return (
     <div
@@ -199,7 +181,7 @@ function Cursor({
       data-testid="cursor">
       {/* cursor outer border element */}
       <div
-        className={classNames("cursor-border", borderClassName)}
+        className={`cursor-border ${borderClassName}`}
         style={styles.cursorBorder}
         ref={cursorBorderElement}></div>
 
@@ -207,7 +189,9 @@ function Cursor({
       <div
         style={styles.innerDot}
         ref={cursorDotElement}
-        className={classNames("cursor-dot", dotClassName)}></div>
+        className={`cursor-dot ${dotClassName}`}>
+        {dotChild}
+      </div>
 
       {/* rest of your app that will get the cursor shape */}
       {children}

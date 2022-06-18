@@ -43,7 +43,7 @@ import Cursor from "react-special-cursor";
 
 function App() {
   return (
-    <Cursor color="orange">
+    <Cursor>
       <App>...</App>
     </Cursor>
   );
@@ -57,7 +57,7 @@ import Cursor from "react-special-cursor";
 
 function App() {
   return (
-    <Cursor color="orange">
+    <Cursor>
       <React.Fragment>
         <App>...</App>
         <AnotherComponent></AnotherComponent>
@@ -71,7 +71,7 @@ function App() {
 
 function App() {
   return (
-    <Cursor color="orange">
+    <Cursor>
       <>
         <App>...</App>
         <AnotherComponent>...</AnotherComponent>
@@ -84,7 +84,7 @@ function App() {
 // also you can do this
 
 function App() {
-  return <Cursor color="orange" children={<App>...</App>} />;
+  return <Cursor children={<App>...</App>} />;
 }
 ```
 
@@ -167,9 +167,11 @@ export default function App() {
   );
 }
 
-const root = document.getElementById("root");
+const container = document.getElementById("root");
+const root = container && createRoot(container);
 
-ReactDOM.render(<App />, root);
+root?.render(<App />);
+
 
 }
 ```
