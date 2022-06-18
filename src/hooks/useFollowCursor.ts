@@ -20,7 +20,7 @@ export default function useFollowCursor() {
     return () => {
       window.removeEventListener("mousedown", () => {});
     };
-  }, [window]);
+  }, []);
 
   return mousePosition;
 }

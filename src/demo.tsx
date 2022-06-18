@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Cursor from "./Cursor/Cursor";
+import Cursor from "../dist/";
 import "./demo.scss";
+import { createRoot } from "react-dom/client";
 
 const welcome = (
   <h3 className="h3">
@@ -74,6 +75,7 @@ export default function App() {
   );
 }
 
-const root = document.getElementById("root");
+const container = document.getElementById("root");
+const root = container && createRoot(container);
 
-ReactDOM.render(<App />, root);
+root?.render(<App />);
