@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import "./Cursor.scss";
+import "./Cursor.css";
 import useFollowCursor from "../hooks/useFollowCursor";
 import { CursorChildrenType, hoverStyle, IStyles } from "./types";
 import PropTypes from "prop-types";

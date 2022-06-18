@@ -6,7 +6,7 @@
 const IsDevice = (() => {
   if (typeof navigator == "undefined") return;
 
-  let ua = navigator.userAgent;
+  const ua = navigator.userAgent;
 
   return {
     info: ua,

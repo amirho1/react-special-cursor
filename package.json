@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "clean": "rimraf dist/",
-    "copyfiles": "copyfiles  ./src/Cursor/*.scss LICENSE package.json README.md dist ",
+    "copyfiles": "copyfiles  ./src/Cursor/*.css LICENSE package.json README.md dist ",
     "build": "npm run clean && tsc && npm run copyfiles",
     "test": "jest --env=jsdom --watch ",
     "serve": "npm run build && webpack serve"
@@ -30,7 +30,6 @@
   "homepage": "https://github.com/amirho1/react-special-cursor#readme",
   "dependencies": {
     "@types/react": "^17.0.47",
-    "csstype": "^3.0.9",
     "node-sass": "^6.0.1",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
@@ -39,6 +38,8 @@
     "typescript": "^4.4.4"
   },
   "devDependencies": {
+    "typescript": "^4.4.4",
+    "@types/react": "^17.0.47",
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-react": "^7.16.0",

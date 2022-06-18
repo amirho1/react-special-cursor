@@ -1,5 +1,3 @@
-import { ReactElement } from "react";
-
 export interface IStyles {
   [element: string]: React.CSSProperties;
 }

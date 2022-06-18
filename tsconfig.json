@@ -18,5 +18,5 @@
     "sourceMap": false
   },
   "include": ["src/**/*.tsx", "src/**/*.ts", "index.tsx"],
-  "exclude": ["node_modules", "dev_server.js", "src/demo.tsx"]
+  "exclude": ["node_modules", "dev_server.js", "src/demo.tsx", "**/**.test.*"]
 }

@@ -8,8 +8,8 @@ export default function useFollowCursor() {
 
   useEffect(() => {
     window.addEventListener("mousemove", mouseEvent => {
-      let mouseX = mouseEvent.clientX;
-      let mouseY = mouseEvent.clientY;
+      const mouseX = mouseEvent.clientX;
+      const mouseY = mouseEvent.clientY;
 
       setMousePosition({
         mouseX,

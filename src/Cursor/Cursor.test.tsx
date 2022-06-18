@@ -1,3 +1,5 @@
+/* eslint-disable react/no-children-prop */
+import React from "react"
 import { screen, cleanup, render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import Cursor from "./Cursor";
@@ -5,15 +7,15 @@ import userEvent from "@testing-library/user-event";
 
 describe("Dot", () => {
   let element: HTMLElement;
-  let childrenTextContext = "Hello world";
-  let children = (
+  const childrenTextContext = "Hello world";
+  const children = (
     <p className="children">
       {childrenTextContext}
       <button className="btn">button</button>
     </p>
   );
-  let cursorTestClassName = "cursor-test-class-name";
-  let dotTestClassName = "dot-test-class-name";
+  const cursorTestClassName = "cursor-test-class-name";
+  const dotTestClassName = "dot-test-class-name";
 
   // do some initialization before each test
   beforeEach(() => {
